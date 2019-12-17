@@ -51,7 +51,7 @@ Wikipediaの説明に当てはめると、
 詳しい解説は多くの書籍等が既にあるので、ここでは具体例として簡単に紹介するに留めます。
 
 ### モデル
-<img src=https://latex.codecogs.com/gif.latex?f(X|\theta=(A,B))=AX&plus;B>
+<img src="https://latex.codecogs.com/gif.latex?f(X|\theta=(A,B))=AX&plus;B">
 
 入力Xは(データ数)×(属性数)の行列、
 AとBは関数のパラメータになります。
@@ -59,7 +59,7 @@ AとBは関数のパラメータになります。
 ### 最適化
 学習データをX’、その教師信号をY’とすると誤差Eは以下のようになります。
 
-<img src=https://latex.codecogs.com/gif.latex?E={Y}'-A{X}'&plus;B>
+<img src="https://latex.codecogs.com/gif.latex?E={Y}'-A{X}'&plus;B">
 
 ここでX’・Y’は定数、A・Bは変数になっており、このEを最小にするためのA・Bを求めます。
 線形回帰の場合は最小二乗法で求めることができます。
@@ -91,12 +91,12 @@ AとBは関数のパラメータになります。
 例えばユニットh<sub>1</sub>の入力では、x<sub>1</sub>とx<sub>2</sub>が矢印を通るときにそれぞれパラメータと積をとり、さらにその2つが入力されるところで和をとります。
 すなわち次の式を表しています。
 
-<img src=https://latex.codecogs.com/gif.latex?w^1_{11}x_1&plus;w^1_{12}x_2>
+<img src="https://latex.codecogs.com/gif.latex?w^1_{11}x_1&plus;w^1_{12}x_2">
 
 さらにユニットh<sub>1</sub>の出力時には活性化関数φが適用されます。
 すなわち、次の式になります。
 
-<img src=https://latex.codecogs.com/gif.latex?h_1=\phi(w^1_{11}x_1&plus;w^1_{12}x_2)>
+<img src="https://latex.codecogs.com/gif.latex?h_1=\phi(w^1_{11}x_1&plus;w^1_{12}x_2)">
 
 この活性化関数には様々な非線形関数が使われます。
 よく使われるのはシグモイド関数やReLU関数などです。
@@ -117,7 +117,7 @@ AとBは関数のパラメータになります。
 Lは損失関数で、最小化する目的の関数を表します（例えば二乗誤差ならL=E<sup>2</sup>など）。
 εは学習率を表し、一回の更新でパラメータをどの程度変えるかを調整します。
 
-<img src=https://latex.codecogs.com/gif.latex?\theta\leftarrow\theta-\epsilon\partial{L}/\partial\theta>
+<img src="https://latex.codecogs.com/gif.latex?\theta\leftarrow\theta-\epsilon\partial{L}/\partial\theta">
 
 ニューラルネットの複雑なモデルの勾配∂L/∂θを求める手法として誤差逆伝播法を使います。
 **このパラメータ更新を大量の学習データで繰り返し行うことによって、ニューラルネットワークの複雑なモデルを学習します。
