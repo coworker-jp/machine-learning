@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import datetime
 import argparse
 import numpy as np
@@ -32,9 +33,10 @@ def predict_labels(probs):
 
 if __name__ == '__main__':
     args = parse()
+    root_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../../')
 
     # データ読み込み
-    train_ids, train_data, train_labels, med, mean, std = load_train_data('data/train.csv')
+    train_ids, train_data, train_labels, med, mean, std = load_train_data(os.path.join(root_dir, 'data', 'train.csv'))
 
     # バリデーションデータの用意
     val_data = train_data[:args.val_num]
@@ -49,7 +51,7 @@ if __name__ == '__main__':
                   metrics=['accuracy'])
     
     # 学習
-    ckpt_path = './ckpt/titanic'
+    ckpt_path = os.path.join(root_dir, 'ckpt/titanic')
     callbacks = [tf.keras.callbacks.ModelCheckpoint(ckpt_path, save_best_only=True, monitor='val_loss')]
     model.fit(train_data, train_labels, 
               batch_size=4, epochs=args.max_epoch, callbacks=callbacks,
@@ -66,7 +68,7 @@ if __name__ == '__main__':
     print('val_acc %.2f' % (true_cnt / args.val_num))
 
     # テストデータ予測
-    test_ids, test_data = load_test_data('data/test.csv', med, mean, std)
+    test_ids, test_data = load_test_data(os.path.join(root_dir, 'data', 'test.csv'), med, mean, std)
     test_probs = model.predict(test_data)
     test_preds = predict_labels(test_probs)
     
@@ -74,6 +76,6 @@ if __name__ == '__main__':
     for id_, pred in zip(test_ids, test_preds):
         result.append('%d,%d' % (id_, pred))
         
-    with open('result.csv', 'w') as fout:
+    with open(os.path.join(root_dir, 'result.csv'), 'w') as fout:
         fout.write('PassengerId,Survived\n')
         fout.write('\n'.join(result))
